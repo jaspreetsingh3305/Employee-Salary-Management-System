@@ -1,5 +1,7 @@
 #include "HourlyEmployee.cpp"
 #include "SalariedEmployee.cpp"
+#include "CommisionEmployee.cpp"
+#include <iomanip>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -9,56 +11,116 @@ using namespace std;
 
 int main() {
 
-		cout <<"\nHello, Please choose which employee you want to create\n"<< endl;
+	cout << "\n\t\t\tHello,Welcome to our Payroll Department."<<endl;
+	cout << "\n\t\t\t--------------------------------------" << endl;
+	cout<<"\n\t\t\tPlease choose which employee you want to create:\n"<< endl;
 		
-		int choice,n=0;
+		int choice;
 		string name;
+		int add;
 		string socialSecurityNumber;
-		double wage, hours, weeklySalary;
+		double wage, hours, weeklySalary,grossSales,commisionRate;
 
 		vector<Employee*> employees;
+		bool createEmployee = true;
 
-		while (n < 1) {
-			cout << "Enter 1 to create an Hourlynemployee\n" << endl;
-			cout << "Enter  2 to create a Salaried employee\n" << endl;
+		
+		do{
+			
+			cout << "\t\t\tEnter 1 to create an Hourly employee, 2 to create Salaried employee,\n" << endl;
+			cout << "\t\t\tor 3 to create a commision employee.\n"<<endl;
 			cin >> choice;
-			switch (choice)
-			{
+			
+			if (choice == 1) {
 
-			case 1: {
-				cout << "Please enter employee name: " << endl;
+				cout << "\t\t\tPlease enter employee name: " << endl;
 				cin >> name;
-				cout << "\nPlease enter Social Security Number: " << endl;
+				cout << "\n\t\t\tPlease enter Social Security Number: " << endl;
 				cin >> socialSecurityNumber;
-				cout << "Enter wage/hour: " << endl;
-				cin >> wage;
-				cout << "Enter hours/week: " << endl;
-				cin >> hours;
-				HourlyEmployee he = HourlyEmployee(name, socialSecurityNumber, wage, hours);
-				employees.push_back(&he);
-				n++;
-				break;
+				cout << "\t\t\tEnter wage/hour: " << endl;
+			
+				try {
+					cin >> wage;
+					cout << "\t\t\tEnter hours/week: " << endl;
+					cin >> hours;
+					HourlyEmployee he = HourlyEmployee(name, socialSecurityNumber, wage, hours);
+					employees.push_back(&he);
+				}
+				catch(exception e){
+					cerr << e.what() << endl;
+				}
+
+				cout << "\t\t\tWould you like to add another employee. Enter '1' for yes and '0' for no.\n" << endl;
+				cin >> add;
+				if (add == 0) {
+					createEmployee = false;
+				}
+
 			}
 
-			case 2: {
-				cout << "Please enter employee name: " << endl;
+			else if (choice == 2) {
+				cout << "\t\t\tPlease enter employee name: " << endl;
 				cin >> name;
-				cout << "\nPlease enter Social Security Number: " << endl;
+				cout << "\n\t\t\tPlease enter Social Security Number: " << endl;
 				cin >> socialSecurityNumber;
-				cout << "Enter weekly salary: " << endl;
+				cout << "\t\t\tEnter weekly salary: " << endl;
+
+				try {
 				cin >> weeklySalary;
 				SalariedEmployee se = SalariedEmployee(name, socialSecurityNumber, weeklySalary);
-				n++;
-				break;
+				employees.push_back(&se);
+
 			}
+			catch (exception e) {
+				cerr << e.what() << endl;
+			}
+				cout << "\t\t\tWould you like to add another employee. Enter '1' for yes and '0' for no.\n" << endl;
+				cin >> add;
+				if (add==0) {
+					createEmployee = false;
+				}
 			}
 
-		}
-		cout << "Here" << endl;
+
+			else {
+				
+					cout << "\t\t\tPlease enter employee name: " << endl;
+					cin >> name;
+					cout << "\n\t\t\tPlease enter Social Security Number: " << endl;
+					cin >> socialSecurityNumber;
+					cout << "\t\t\tEnter Gross Sales: " << endl;
+
+					try {
+						cin >> grossSales;
+						cout << "\t\t\tEnter commision rate between 0 and 1: " << endl;
+						cin >> commisionRate;
+						 CommissionEmployee ce = CommissionEmployee(name, socialSecurityNumber, grossSales,commisionRate);
+						employees.push_back(&ce);
+
+					}
+					catch (exception e) {
+						cerr << e.what() << endl;
+					}
+					cout << "\t\t\tWould you like to add another employee. Enter '1' for yes and '0' for no.\n" << endl;
+					cin >> add;
+					if (add == 0) {
+						createEmployee = false;
+				}
+			}
+			
+		} while (createEmployee==true);
+
+
+
+		
+		
+		cout << "\n\t\t\t-----------Employees Information----------\n" << endl;
 		for (Employee* e: employees)
 			{
-				cout << e->toString() << endl;
+			cout<<"\n"<< e->toString() <<"\n"<< endl;
+		
 			}
+		
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	cin.get();

@@ -8,17 +8,18 @@ private:
 
 
 public:
-	SalariedEmployee(string &name, string &socialSecurityNumber,double &weeklySalary)
+	SalariedEmployee(string name, string socialSecurityNumber,double weeklySalary)
 		:Employee(name,socialSecurityNumber){
 
-		validateWeeklySalary(weeklySalary);
+		setWeeklySalary(weeklySalary);
 	}
 
-	void validateWeeklySalary(double &weeklySalary) {
+	void validateWeeklySalary(double weeklySalary) {
+
 		if (weeklySalary > 0)
 			this->weeklySalary = weeklySalary;
 		else
-			throw new exception("Weekly Salary MUST be > 0");
+			throw exception("\nWeekly Salary MUST be > 0\n");
 
 	}
 	

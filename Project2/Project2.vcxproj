@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CommisionEmployee.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="HourlyEmployee.cpp" />
     <ClCompile Include="Main.cpp" />
