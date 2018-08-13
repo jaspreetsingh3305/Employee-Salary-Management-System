@@ -65,7 +65,7 @@ public:
   }
 
 	string const toString() override {
-		return Employee::toString() + "\nWage: $" + to_string(getWage()) + "\nHours: " +
-					to_string(getHours()) + "\nMonthly Income: $"+to_string(getEarnings());
+		return "\nWage: $" + to_string(getWage()) + "\nHours: " +
+					to_string(getHours()) + "\nMonthly Income: $"+to_string(getEarnings()) + "\n";
 	}
 };

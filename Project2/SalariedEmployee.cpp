@@ -38,7 +38,7 @@ public:
 	
 		const string toString() override
 	{
-		return Employee::toString()+"\nMonthly Salary: $"+to_string(getEarnings());
+		return "\nMonthly Salary: $"+to_string(getEarnings()) + "\n";
 	}
 
 };

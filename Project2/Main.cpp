@@ -15,23 +15,23 @@ int main() {
 	cout << "\n\t\t\t--------------------------------------" << endl;
 	cout<<"\n\t\t\tPlease choose which employee you want to create:\n"<< endl;
 		
-		int choice;
-		string name;
+		string name,choice;
 		int add;
 		string socialSecurityNumber;
 		double wage, hours, weeklySalary,grossSales,commisionRate;
 
-		vector<Employee*> employees;
+		vector<Employee*> employeeIncome;
+		vector<Employee> employees;
 		bool createEmployee = true;
 
 		
-		do{
+		while (createEmployee == true) {
 			
 			cout << "\t\t\tEnter 1 to create an Hourly employee, 2 to create Salaried employee,\n" << endl;
 			cout << "\t\t\tor 3 to create a commision employee.\n"<<endl;
 			cin >> choice;
 			
-			if (choice == 1) {
+			if (choice =="1") {
 
 				cout << "\t\t\tPlease enter employee name: " << endl;
 				cin >> name;
@@ -44,7 +44,8 @@ int main() {
 					cout << "\t\t\tEnter hours/week: " << endl;
 					cin >> hours;
 					HourlyEmployee he = HourlyEmployee(name, socialSecurityNumber, wage, hours);
-					employees.push_back(&he);
+					employeeIncome.push_back(&he);
+					employees.push_back(he);
 				}
 				catch(exception e){
 					cerr << e.what() << endl;
@@ -58,7 +59,7 @@ int main() {
 
 			}
 
-			else if (choice == 2) {
+			else if (choice == "2") {
 				cout << "\t\t\tPlease enter employee name: " << endl;
 				cin >> name;
 				cout << "\n\t\t\tPlease enter Social Security Number: " << endl;
@@ -68,7 +69,8 @@ int main() {
 				try {
 				cin >> weeklySalary;
 				SalariedEmployee se = SalariedEmployee(name, socialSecurityNumber, weeklySalary);
-				employees.push_back(&se);
+				employeeIncome.push_back(&se);
+				employees.push_back(se);
 
 			}
 			catch (exception e) {
@@ -82,7 +84,7 @@ int main() {
 			}
 
 
-			else {
+			else if(choice=="3") {
 				
 					cout << "\t\t\tPlease enter employee name: " << endl;
 					cin >> name;
@@ -95,7 +97,9 @@ int main() {
 						cout << "\t\t\tEnter commision rate between 0 and 1: " << endl;
 						cin >> commisionRate;
 						 CommissionEmployee ce = CommissionEmployee(name, socialSecurityNumber, grossSales,commisionRate);
-						employees.push_back(&ce);
+						 employeeIncome.push_back(&ce);
+						 employees.push_back(ce);
+
 
 					}
 					catch (exception e) {
@@ -107,19 +111,26 @@ int main() {
 						createEmployee = false;
 				}
 			}
+			else {
+				cerr << "Please enter a valid option" << endl;
+			}
 			
-		} while (createEmployee==true);
+		};
 
 
 
 		
 		
 		cout << "\n\t\t\t-----------Employees Information----------\n" << endl;
-		for (Employee* e: employees)
-			{
-			cout<<"\n"<< e->toString() <<"\n"<< endl;
+
+		for (int i = 0;i<employees.size();i++) {
 		
+				cout << employees[i].names();
+				cout << employeeIncome[i]->toString() <<endl;
+				
 			}
+		
+			
 		
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');

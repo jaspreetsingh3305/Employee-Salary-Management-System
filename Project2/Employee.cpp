@@ -22,10 +22,14 @@ public:
 		return socialSecurityNumber;
 	}
 
-	virtual const double getEarnings()=0;
+	virtual const double getEarnings() { return 0; }
 
 	virtual string const toString() {
-		return "Name: " + getName() + "\nSocial Security Number: " + getSocialSecurityNumber();
+		return 0;
 		
+	}
+
+	string names() {
+		return "Name: " + getName() + "\nSocial Security Number: " + getSocialSecurityNumber();
 	}
 };

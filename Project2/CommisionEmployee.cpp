@@ -48,13 +48,13 @@ public:
 
 
 	const double getEarnings() override {
-		return getGrossSales() * getCommissionRate();//Some portion of total sales =employee's income
+		return getGrossSales() * getCommissionRate();
 	}
 
 	const string toString() override {
-		return Employee::toString() + "\nGross Sales: "+to_string(getGrossSales())+
+		return "\nGross Sales: "+to_string(getGrossSales())+
 						"\nCommissin Rate: "+ to_string(getCommissionRate())+
-				"\nTotal Earnings: $"+to_string(getEarnings());
+				"\nTotal Earnings: $"+to_string(getEarnings())+"\n";
 	}
 
 };
