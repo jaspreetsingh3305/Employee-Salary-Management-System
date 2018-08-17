@@ -12,7 +12,6 @@ public:
 
 	Employee(string name, string socialSecurityNumber):
 		name(name), socialSecurityNumber(socialSecurityNumber) {}
-	
 
 	string getName() {
 		return name;
@@ -24,12 +23,9 @@ public:
 
 	virtual const double getEarnings() { return 0; }
 
-	virtual string const toString() {
-		return 0;
-		
-	}
+	virtual string const toString() { return 0; }
 
-	string names() {
+	string basicInfo() {
 		return "Name: " + getName() + "\nSocial Security Number: " + getSocialSecurityNumber();
 	}
 };
